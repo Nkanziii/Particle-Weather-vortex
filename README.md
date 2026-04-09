@@ -6,6 +6,8 @@ A live weather visualisation built with vanilla JavaScript and p5.js. Real-time 
 
 ## Preview
 
+[Click here to view project](https://nkanziii.github.io/Particle-Weather-vortex/)
+
 ---
 
 ## How it works
