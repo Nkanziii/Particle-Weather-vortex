@@ -24,7 +24,7 @@ html, body {
     font-family: var(--font);
 }
 
-/* ── Canvas container ── */
+/* ── Canvas container — fixed background on desktop ── */
 #sketch-container {
     position: fixed;
     inset: 0;
@@ -35,7 +35,7 @@ html, body {
     display: block;
 }
 
-/* ── UI layer — two column: left text, right open for sketch ── */
+/* ── UI layer ── */
 .ui-layer {
     position: relative;
     z-index: 1;
@@ -46,7 +46,6 @@ html, body {
     justify-content: center;
     padding: 5rem 5vw 4rem;
     gap: 2rem;
-    /* Content occupies left ~45%, right side shows the sketch */
     max-width: 520px;
 }
 
@@ -225,27 +224,87 @@ html, body {
 }
 
 /* ── Responsive ── */
-@media (max-width: 600px) {
+
+/* Tablet: 600–900px — keep left layout, tighten spacing */
+@media (max-width: 900px) {
     .ui-layer {
+        max-width: 480px;
+        padding: 4rem 4vw 3rem;
+        gap: 1.6rem;
+    }
+
+    .site-title {
+        font-size: clamp(2.2rem, 6vw, 3.2rem);
+    }
+}
+
+/* Mobile: < 600px — switch sketch to flow below content */
+@media (max-width: 600px) {
+    /* Sketch leaves fixed mode and sits below in normal flow */
+    #sketch-container {
+        position: relative;
+        width: 100%;
+        height: 80vh;
+        inset: unset;
+    }
+
+    .ui-layer {
+        min-height: unset;
         max-width: 100%;
+        align-items: center;
         justify-content: flex-start;
-        padding: 5rem 1.5rem 3rem;
+        padding: 3.5rem 1.25rem 2.5rem;
+        gap: 1.4rem;
+    }
+
+    .site-header {
+        align-items: center;
+        text-align: center;
+    }
+
+    .site-title {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+
+    .site-subtitle {
+        text-align: center;
+    }
+
+    .project-description {
+        text-align: center;
+        border-left: none;
+        border-top: 2px solid var(--accent);
+        padding-left: 0;
+        padding-top: 0.9rem;
     }
 
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.65rem;
+        width: 100%;
     }
 
     .card {
-        padding: 1.1rem 1.1rem;
+        padding: 1rem 1.1rem;
     }
 
     .card-value {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
-    .site-subtitle {
-        display: none;
+    .condition { font-size: 1rem; }
+    .time { font-size: 1.3rem; }
+
+    .site-footer {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
     }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .site-title { font-size: 1.9rem; }
+    .card-value { font-size: 1.3rem; }
+    #sketch-container { height: 65vh; }
 }
