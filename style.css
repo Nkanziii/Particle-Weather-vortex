@@ -1,0 +1,251 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0d0810;
+    --accent: #f472b6;
+    --accent-soft: #c084fc;
+    --text-primary: #fce7f3;
+    --text-muted: #9d6e8a;
+    --card-bg: rgba(30, 10, 25, 0.58);
+    --card-border: rgba(244, 114, 182, 0.15);
+    --font: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow-y: auto;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font);
+}
+
+/* ── Canvas container ── */
+#sketch-container {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+#sketch-container canvas {
+    display: block;
+}
+
+/* ── UI layer — two column: left text, right open for sketch ── */
+.ui-layer {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5rem 5vw 4rem;
+    gap: 2rem;
+    /* Content occupies left ~45%, right side shows the sketch */
+    max-width: 520px;
+}
+
+/* ── Header ── */
+.site-header {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+}
+
+.site-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.site-tag::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.site-title {
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    background: linear-gradient(135deg, #fce7f3 0%, var(--accent) 50%, var(--accent-soft) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.site-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    max-width: 380px;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* ── Project description ── */
+.project-description {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    max-width: 380px;
+    line-height: 1.75;
+    font-weight: 300;
+    border-left: 2px solid var(--accent);
+    padding-left: 0.9rem;
+    opacity: 0.85;
+}
+
+/* ── Cards ── */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 190px));
+    gap: 0.8rem;
+    width: 100%;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1.3rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: border-color 0.35s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    border-color: rgba(244, 114, 182, 0.4);
+    transform: translateY(-2px);
+}
+
+.card-wide {
+    grid-column: 1 / -1;
+}
+
+.card-label {
+    font-size: 0.67rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--text-muted);
+}
+
+.card-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.condition {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0;
+}
+
+.time {
+    font-size: 1.6rem;
+}
+
+.card-unit {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* ── Footer ── */
+.site-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+}
+
+.footer-divider {
+    opacity: 0.4;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    flex-shrink: 0;
+    transition: background 0.5s ease;
+}
+
+.status-dot.live {
+    background: var(--accent);
+    animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+/* ── Animations ── */
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ── Loading shimmer ── */
+.cards-grid.loading .card-value {
+    animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.6; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .ui-layer {
+        max-width: 100%;
+        justify-content: flex-start;
+        padding: 5rem 1.5rem 3rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.65rem;
+    }
+
+    .card {
+        padding: 1.1rem 1.1rem;
+    }
+
+    .card-value {
+        font-size: 1.6rem;
+    }
+
+    .site-subtitle {
+        display: none;
+    }
+}

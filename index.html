@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Particle Weather — London</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- p5.js canvas is inserted here by sketch.js -->
+    <div id="sketch-container"></div>
+
+    <!-- UI layer floats above the canvas -->
+    <div class="ui-layer">
+
+        <header class="site-header">
+            <span class="site-tag">Live Data · London</span>
+            <h1 class="site-title">Particle Weather</h1>
+            <p class="site-subtitle">Real-time conditions visualised through a p5.js particle system. Particle colour, movement, and behaviour adapt to live atmospheric data.</p>
+        </header>
+
+        <p class="project-description">
+            Built with vanilla JavaScript and p5.js, this project fetches live weather data
+            from the Open-Meteo API and maps it to a generative particle system. 800 particles
+            orbit the canvas centre — their speed driven by wind, their colour palette shifting
+            across six weather states: rain, wind, snow, cold, humid, and hot.
+        </p>
+
+        <main class="cards-grid">
+            <div class="card">
+                <span class="card-label">Temperature</span>
+                <div class="card-row">
+                    <span class="card-value temperature">--</span>
+                    <span class="card-unit">°C</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-label">Wind Speed</span>
+                <div class="card-row">
+                    <span class="card-value windspeed">--</span>
+                    <span class="card-unit">km/h</span>
+                </div>
+            </div>
+
+            <div class="card card-wide">
+                <span class="card-label">Condition</span>
+                <span class="card-value condition">Loading...</span>
+            </div>
+
+            <div class="card">
+                <span class="card-label">Updated</span>
+                <span class="card-value time">--</span>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text">Connecting...</span>
+            <span class="footer-divider">·</span>
+            <span>Open-Meteo API · p5.js · Vanilla JS</span>
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
