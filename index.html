@@ -10,10 +10,7 @@
 </head>
 <body>
 
-    <!-- p5.js canvas is inserted here by sketch.js -->
-    <div id="sketch-container"></div>
-
-    <!-- UI layer floats above the canvas -->
+    <!-- UI layer: text, cards, footer -->
     <div class="ui-layer">
 
         <header class="site-header">
@@ -65,6 +62,9 @@
         </footer>
 
     </div>
+
+    <!-- p5.js sketch sits below the content -->
+    <div id="sketch-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
     <script src="sketch.js"></script>
