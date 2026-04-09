@@ -6,8 +6,6 @@ A live weather visualisation built with vanilla JavaScript and p5.js. Real-time 
 
 ## Preview
 
-![Particle Weather screenshot](preview.png)
-
 ---
 
 ## How it works
