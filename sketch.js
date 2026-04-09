@@ -58,7 +58,8 @@ class Particle {
 }
 
 function setup() {
-  let cnv = createCanvas(windowWidth, windowHeight);
+  const container = document.getElementById('sketch-container');
+  let cnv = createCanvas(container.offsetWidth, container.offsetHeight);
   cnv.parent('sketch-container');
   frameRate(weatherData.current.windspeed_10m);
   for (let i = 0; i < numOfParticles; i++) {
@@ -79,5 +80,6 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  const container = document.getElementById('sketch-container');
+  resizeCanvas(container.offsetWidth, container.offsetHeight);
 }
