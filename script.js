@@ -92,3 +92,4 @@ document.addEventListener('visibilitychange', () => {
 cardsGrid.classList.add('loading');
 fetchData();
 setInterval(fetchData, 10 * 60 * 1000);
+
